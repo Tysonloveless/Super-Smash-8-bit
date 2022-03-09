@@ -72,32 +72,12 @@ def update_player(player, player2, env_items, delta):
             player.speed = 0.0
             p.y = ei.rect.y
 
-        p2 = player2.position
-        if (
-            ei.blocking and
-            ei.rect.x <= p2.x and
-            ei.rect.x + ei.rect.width >= p2.x and
-            ei.rect.y >= p2.y and
-            ei.rect.y < p2.y + player.speed * delta
-        ):
-            hit_obstacle = True
-            player2.speed = 0.0
-            p2.y = ei.rect.y
-
     if not hit_obstacle:
         player.position.y += player.speed * delta
         player.speed += G * delta
         player.can_jump = False
-        player2.position.y += player2.speed * delta
-        player2.speed += G * delta
-        player2.can_jump = False
     else:
         player.can_jump = True
-        player2.can_jump = True
-
-
-
-
 
 # Main intialization
 player = Player(pyray.Vector2(400, 280), 0, False)
