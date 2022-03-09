@@ -40,12 +40,12 @@ class EnvItem:
         self.blocking = blocking
         self.color = color
 
-def update_player(player, env_items, delta):
-    if pyray.is_key_down(pyray.KEY_LEFT):
+def update_player(player, env_items, delta, keys):
+    if pyray.is_key_down(keys[0]):
         player.position.x -= PLAYER_HOR_SPD * delta
-    if pyray.is_key_down(pyray.KEY_RIGHT):
+    if pyray.is_key_down(keys[1]):
         player.position.x += PLAYER_HOR_SPD * delta
-    if pyray.is_key_down(pyray.KEY_SPACE) and player.can_jump:
+    if pyray.is_key_down(keys[2]) and player.can_jump:
         player.speed = -PLAYER_JUMP_SPD
         player.can_jump = False
 
@@ -71,7 +71,9 @@ def update_player(player, env_items, delta):
         player.can_jump = True
 
 # Main intialization
+
 player = Player(pyray.Vector2(400, 280), 0, False)
+player2 = Player(pyray.Vector2(400,280), 0, False)
 env_items = (
     EnvItem(pyray.Rectangle(0, 0, 1000, 400), 0, LIGHTGRAY),
     EnvItem(pyray.Rectangle(0, 400, 1000, 200), 1, GRAY),
@@ -86,9 +88,12 @@ while not pyray.window_should_close():  # Detect window close button or ESC key
     # Update
     delta_time = pyray.get_frame_time()
 
-    update_player(player, env_items, delta_time)
+    keys_1 = [pyray.KEY_A, pyray.KEY_D, pyray.KEY_W]
+    keys_2 = [pyray.KEY_J, pyray.KEY_L, pyray.KEY_I]
+    update_player(player, env_items, delta_time, keys_1)
+    update_player(player2, env_items, delta_time, keys_2)
 
-
+    #restarts the game
     if pyray.is_key_pressed(pyray.KEY_R):
         player.position = pyray.Vector2(400, 280)
 
@@ -101,20 +106,20 @@ while not pyray.window_should_close():  # Detect window close button or ESC key
         pyray.draw_rectangle_rec(env_item.rect, env_item.color)
 
     player_rect = pyray.Rectangle(
-        int(player.position.x) - 20,
+        int(player.position.x) - 20, 
         int(player.position.y) - 40,
         40, 40
     )
+
+    player_rect2 = pyray.Rectangle(
+        int(player2.position.x) - 20,
+        int(player2.position.y) - 40,
+        40, 40)
+
     pyray.draw_rectangle_rec(player_rect, RED)
+    pyray.draw_rectangle_rec(player_rect2, BLACK)
 
     pyray.end_mode_2d()
-
-    pyray.draw_text('Controls:', 20, 20, 10, BLACK)
-    pyray.draw_text('- Right/Left to move', 40, 40, 10, DARKGRAY)
-    pyray.draw_text('- Space to jump', 40, 60, 10, DARKGRAY)
-    pyray.draw_text('- Mouse Wheel to Zoom in-out, R to reset zoom',
-                    40, 80, 10, DARKGRAY)
-    pyray.draw_text('Current camera mode:', 20, 120, 10, BLACK)
 
     pyray.end_drawing()
 
