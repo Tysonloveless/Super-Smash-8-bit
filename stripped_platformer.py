@@ -32,7 +32,6 @@ class Player:
         self.speed = speed
         self.can_jump = can_jump
 
-
 class EnvItem:
 
     def __init__(self, rect, blocking, color):
@@ -125,3 +124,11 @@ while not pyray.window_should_close():  # Detect window close button or ESC key
 
 # De-Initialization
 pyray.close_window()  # Close window and OpenGL context
+
+#TO DO
+#CAMERA CENTERED SHOW PLATFORM EDGES 
+#ATTACKS
+#SHIELD
+#COLLISION DETECTION FOR OTHER PLAYER
+#SCREEN BOUNDS
+#SEPARATE INTO CLASSES
