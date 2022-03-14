@@ -16,8 +16,8 @@ player_2_color = BLACK
 global g_evening_out, g_even_out_target
 g_evening_out = False
 
-G = 400
-PLAYER_JUMP_SPD = 350.0
+G = 2000
+PLAYER_JUMP_SPD = 800.0
 PLAYER_HOR_SPD = 200.0
 
 SCREEN_WIDTH = 800
