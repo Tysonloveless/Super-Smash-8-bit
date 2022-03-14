@@ -13,8 +13,6 @@ from raylib.colors import (
 player_1_color = RED
 player_2_color = BLACK
 # Initialization
-global g_evening_out, g_even_out_target
-g_evening_out = False
 
 G = 2000
 PLAYER_JUMP_SPD = 800.0
