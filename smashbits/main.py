@@ -30,7 +30,7 @@ pyray.init_window(SCREEN_WIDTH, SCREEN_HEIGHT,
 
 # Main intialization
 player = Player(pyray.Vector2(400, 280), 0, False)
-player2 = Player(pyray.Vector2(600,280), 0, False)
+player2 = Player(pyray.Vector2(1200,280), 0, False)
 env_items = (
     #I don't think this one does anything
     #EnvItem(pyray.Rectangle(0, 0, 1000, 400), 0, LIGHTGRAY),
@@ -55,7 +55,7 @@ while not pyray.window_should_close():  # Detect window close button or ESC key
     #restarts the game
     if pyray.is_key_pressed(pyray.KEY_R):
         player.position = pyray.Vector2(400, 280)
-        player2.position = pyray.Vector2(400, 280)
+        player2.position = pyray.Vector2(1200, 280)
 
     # Draw
     pyray.clear_background(LIGHTGRAY)
@@ -83,10 +83,9 @@ while not pyray.window_should_close():  # Detect window close button or ESC key
 # De-Initialization
 pyray.close_window()  # Close window and OpenGL context
 
-#TO DO
-#CAMERA CENTERED SHOW PLATFORM EDGES 
-#ATTACKS
-#SHIELD
+#####    TO DO    #####
+#ATTACKS - damage, ranged attack bug when moving/ facing right
+#SHIELD - negate damage, timer/ limit movement
 #COLLISION DETECTION FOR OTHER PLAYER
-#SCREEN BOUNDS
+#SCREEN BOUNDS - edge death detection
 #SEPARATE INTO CLASSES
