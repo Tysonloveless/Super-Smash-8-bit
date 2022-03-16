@@ -20,24 +20,24 @@ G = 2000
 PLAYER_JUMP_SPD = 800.0
 PLAYER_HOR_SPD = 200.0
 
-SCREEN_WIDTH = 800
-SCREEN_HEIGHT = 450
+SCREEN_WIDTH = 1600
+SCREEN_HEIGHT = 900
 
 pyray.set_target_fps(60)  # Set our game to run at 60 frames-per-second
 
 pyray.init_window(SCREEN_WIDTH, SCREEN_HEIGHT,
-                  'raylib [core] example - 2d camera')
+                  'Super Smash Blocks - Raylib')
 
 # Main intialization
 player = Player(pyray.Vector2(400, 280), 0, False)
-player2 = Player(pyray.Vector2(400,280), 0, False)
+player2 = Player(pyray.Vector2(600,280), 0, False)
 env_items = (
     #I don't think this one does anything
     #EnvItem(pyray.Rectangle(0, 0, 1000, 400), 0, LIGHTGRAY),
-    EnvItem(pyray.Rectangle(0, 400, 1000, 200), 1, GRAY),
-    EnvItem(pyray.Rectangle(300, 200, 400, 10), 1, GRAY),
-    EnvItem(pyray.Rectangle(250, 300, 100, 10), 1, GRAY),
-    EnvItem(pyray.Rectangle(650, 300, 100, 10), 1, GRAY),
+    EnvItem(pyray.Rectangle(200, 600, 1200, 200), 1, GRAY),
+    EnvItem(pyray.Rectangle(550, 400, 500, 10), 1, GRAY),
+    EnvItem(pyray.Rectangle(450, 500, 300, 10), 1, GRAY),
+    EnvItem(pyray.Rectangle(850, 500, 300, 10), 1, GRAY),
 )
 
 
