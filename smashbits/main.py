@@ -1,46 +1,31 @@
-from math import sqrt
 from player import Player
 from envitem import EnvItem
 from update_player import update_player
 import pyray
+import constants
 from collision import Collision
 
-from raylib.colors import (
-    DARKGRAY,
-    RED,
-    BLACK,
-    GRAY,
-    LIGHTGRAY,
-)
+player_1_color = constants.RED
+player_2_color = constants.BLACK
 
-player_1_color = RED
-player_2_color = BLACK
+
+pyray.set_target_fps(60)  # Set our game to run at 60 frames-per-second
+
+pyray.init_window(constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT,
+                  'Super Smash Blocks - Raylib')
 
 def main():
-    # Initialization
-    G = 2000
-    PLAYER_JUMP_SPD = 800.0
-    PLAYER_HOR_SPD = 200.0
-
-    SCREEN_WIDTH = 1600
-    SCREEN_HEIGHT = 900
     collision = Collision
-
-    pyray.set_target_fps(60)  # Set our game to run at 60 frames-per-second
-
-    pyray.init_window(SCREEN_WIDTH, SCREEN_HEIGHT,
-                    'Super Smash Blocks - Raylib')
-
     # Main intialization
     player = Player(pyray.Vector2(400, 280), 0, False)
     player2 = Player(pyray.Vector2(1200,280), 0, False)
     env_items = (
         #I don't think this one does anything
         #EnvItem(pyray.Rectangle(0, 0, 1000, 400), 0, LIGHTGRAY),
-        EnvItem(pyray.Rectangle(200, 600, 1200, 200), 1, GRAY),
-        EnvItem(pyray.Rectangle(550, 400, 500, 10), 1, GRAY),
-        EnvItem(pyray.Rectangle(450, 500, 300, 10), 1, GRAY),
-        EnvItem(pyray.Rectangle(850, 500, 300, 10), 1, GRAY),
+        EnvItem(pyray.Rectangle(200, 600, 1200, 200), 1, constants.GRAY),
+        EnvItem(pyray.Rectangle(550, 400, 500, 10), 1, constants.GRAY),
+        EnvItem(pyray.Rectangle(450, 500, 300, 10), 1, constants.GRAY),
+        EnvItem(pyray.Rectangle(850, 500, 300, 10), 1, constants.GRAY),
     )
 
 
@@ -61,8 +46,8 @@ def main():
             player.position = pyray.Vector2(400, 280)
             player2.position = pyray.Vector2(1200, 280)
 
-        # Draw
-        pyray.clear_background(LIGHTGRAY)
+    # Draw
+        pyray.clear_background(constants.LIGHTGRAY)
 
         for env_item in env_items:
             pyray.draw_rectangle_rec(env_item.rect, env_item.color)
