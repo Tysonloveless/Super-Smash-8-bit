@@ -1,6 +1,6 @@
 from player import Player
 from envitem import EnvItem
-from update_player import update_player
+from update_player import UpdatePlayer
 import pyray
 import constants
 from collision import Collision
@@ -28,7 +28,6 @@ def main():
         EnvItem(pyray.Rectangle(850, 500, 300, 10), 1, constants.GRAY),
     )
 
-
     while not pyray.window_should_close():  # Detect window close button or ESC key
         # Update
         delta_time = pyray.get_frame_time()
@@ -36,8 +35,11 @@ def main():
         pyray.begin_drawing()
         keys_1 = [pyray.KEY_A, pyray.KEY_D, pyray.KEY_W, pyray.KEY_S, pyray.KEY_Q, pyray.KEY_E]
         keys_2 = [pyray.KEY_J, pyray.KEY_L, pyray.KEY_I, pyray.KEY_K, pyray.KEY_U, pyray.KEY_O]
-        update_player(player, env_items, delta_time, keys_1, player_1_color)
-        update_player(player2, env_items, delta_time, keys_2, player_2_color)
+
+        game = UpdatePlayer(player)
+        game2 = UpdatePlayer(player2)
+        game.update_player(player, env_items, delta_time, keys_1, player_1_color)
+        game2.update_player(player2, env_items, delta_time, keys_2, player_2_color)
         collision.check_collision(player, player2)
 
     # player.direction = "right"
@@ -62,9 +64,10 @@ def main():
             int(player2.position.x) - 20,
             int(player2.position.y) - 40,
             40, 40)
-
         pyray.draw_rectangle_rec(player_rect, player_1_color)
         pyray.draw_rectangle_rec(player_rect2, player_2_color)
+        pyray.draw_text((str(player._damage) + ' %'), 400, constants.SCREEN_HEIGHT - 100, constants.FONT_SIZE, player_1_color)
+        pyray.draw_text((str(player2._damage) + ' %'), 1200, constants.SCREEN_HEIGHT - 100, constants.FONT_SIZE, player_2_color)
     #  pyray.draw_rectangle_lines(400,280,10,10,RED)
 
         pyray.end_drawing()
@@ -76,8 +79,8 @@ def main():
 main()
 
 #####    TO DO    #####
-#ATTACKS - damage, ranged attack bug when moving/ facing right
+#ATTACKS - damage, ranged attack bug when moving/ facing right (FIXED BUG)
 #SHIELD - negate damage, timer/ limit movement
 #COLLISION DETECTION FOR OTHER PLAYER
-#SCREEN BOUNDS - edge death detection     - not an immediate priority
-#SEPARATE INTO CLASSES
+#SCREEN BOUNDS - edge death detection     - not an immediate priority (DONE)
+#SEPARATE INTO CLASSES (MOSTLY DONE)
