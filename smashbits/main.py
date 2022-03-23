@@ -41,6 +41,7 @@ def main():
         game.update_player(player, env_items, delta_time, keys_1, player_1_color)
         game2.update_player(player2, env_items, delta_time, keys_2, player_2_color)
         collision.check_collision(player, player2)
+        collision.check_bounds(player, player2)
 
     # player.direction = "right"
         #restarts the game
