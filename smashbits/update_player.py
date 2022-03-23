@@ -45,7 +45,7 @@ class UpdatePlayer:
             
 
         #e and o (punch attack)
-        if pyray.is_key_down(keys[5]) and player.get_sheild_health() > 0:
+        if pyray.is_key_down(keys[5]) and player.get_shield_health() > 0:
             if player.get_direction() == "left":
                 start_x = int(player.position.x) - 40
             else:
@@ -83,5 +83,3 @@ class UpdatePlayer:
         if player.center <= 0 or player.center >= constants.SCREEN_WIDTH:
             player.center = player.position.x
             player.can_shoot = True
-            print('guy is off screen')
-        print(player.can_shoot)

@@ -6,7 +6,7 @@ class Player:
         self.speed = speed
         self.can_jump = can_jump
         self.can_shoot = True
-        self._sheild_health = 100
+        self._shield_health = 100
         self._damage = 0
         self._direction = "left"
         self.end_x = 100
@@ -18,8 +18,8 @@ class Player:
     def set_direction(self, direction):
         self._direction = direction
 
-    def get_sheild_health(self):
-        return self._sheild_health
+    def get_shield_health(self):
+        return self._shield_health
 
-    def  set_sheild_health(self, health):
-        self._sheild_health = health
+    def  set_shield_health(self, health):
+        self._shield_health = health
