@@ -3,6 +3,7 @@ import constants
 class UpdatePlayer:
     def __init__(self, player):
         self.y = 0
+        self.punching  = False
 
     def update_player(self, player, env_items, delta, keys, player_color):
 
@@ -25,7 +26,9 @@ class UpdatePlayer:
             player.can_jump = False
         
         #s and k (shield)
-        if pyray.is_key_down(keys[3]):
+        player.set_shield(False)
+        if pyray.is_key_down(keys[3]) and player.get_shield_health() > 0:
+            player.set_shield(True)
             pyray.draw_rectangle_lines(int(player.position.x)-25, int(player.position.y)-45,50,50,player_color)
             
         #q and u (ranged attack)
@@ -33,23 +36,27 @@ class UpdatePlayer:
         #currently trying to have the laser fly out instead of always being centered on the player
         #if a bolt is flying, hopefully the player can't spawn another laser
         if pyray.is_key_down(keys[4]) and player.can_shoot:
+            player.center = player.position.x
             if player.get_direction() == "left":
                 player.change = -10
-                player.end_x = player.center - 200
+                player.end_x = player.center
+                player.center = player.center - constants.LASER_LENGTH
                 #end_x = 0
             else:
                 player.change = 10
-                player.end_x = player.center + 200
+                player.end_x = player.center + constants.LASER_LENGTH
                 #end_x = constants.SCREEN_WIDTH
             player.can_shoot = False
             
 
         #e and o (punch attack)
+        self.punching = False
         if pyray.is_key_down(keys[5]) and player.get_shield_health() > 0:
             if player.get_direction() == "left":
                 start_x = int(player.position.x) - 40
             else:
                 start_x = int(player.position.x) + 20
+            self.punching = True
             pyray.draw_rectangle(start_x, int(player.position.y)-30,20,20,player_color)
         
         hit_obstacle = False
@@ -75,7 +82,6 @@ class UpdatePlayer:
 
         
 
-
         if (not player.can_shoot) and player.center > 0 and player.center < constants.SCREEN_WIDTH:
             
             if pyray.is_key_down(keys[4]):
@@ -84,9 +90,15 @@ class UpdatePlayer:
             pyray.draw_line(int(player.center), int(temp) - 20, int(player.end_x), int(temp) - 20, player_color)
             player.center = player.center + player.change
             player.end_x = player.end_x + player.change
-            player.end_x = player.center + 200
+            player.end_x = player.center + constants.LASER_LENGTH
             
 
         if player.center <= 0 or player.center >= constants.SCREEN_WIDTH:
             player.center = player.position.x
             player.can_shoot = True
+
+    def get_punching(self):
+        return self.punching
+
+    def get_laser_y(self):
+        return 20

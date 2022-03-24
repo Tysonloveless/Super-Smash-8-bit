@@ -15,7 +15,7 @@ pyray.init_window(constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT,
                   'Super Smash Blocks - Raylib')
 
 def main():
-    collision = Collision
+    collision = Collision()
     # Main intialization
     player = Player(pyray.Vector2(400, 280), 0, False)
     player2 = Player(pyray.Vector2(1200,280), 0, False)
@@ -40,14 +40,24 @@ def main():
         game2 = UpdatePlayer(player2)
         game.update_player(player, env_items, delta_time, keys_1, player_1_color)
         game2.update_player(player2, env_items, delta_time, keys_2, player_2_color)
-        collision.check_collision(player, player2)
-        collision.check_bounds(player, player2)
+        punching = game.get_punching()
+        punching2 = game2.get_punching()
+        collision.check_punch_collision(player, player2, punching)
+        collision.check_punch_collision(player2, player, punching2)
 
+        laser_active = not player.get_can_shoot()
+        laser_active2 = not player2.get_can_shoot()
+        collision.check_laser_collision(player, player2, laser_active)
+        collision.check_laser_collision(player2, player, laser_active2)
+
+        collision.check_bounds(player, player2)
     # player.direction = "right"
         #restarts the game
         if pyray.is_key_pressed(pyray.KEY_R):
             player.position = pyray.Vector2(400, 280)
+            player.set_damage(0)
             player2.position = pyray.Vector2(1200, 280)
+            player2.set_damage(0)
 
     # Draw
         pyray.clear_background(constants.LIGHTGRAY)
@@ -67,8 +77,8 @@ def main():
             40, 40)
         pyray.draw_rectangle_rec(player_rect, player_1_color)
         pyray.draw_rectangle_rec(player_rect2, player_2_color)
-        pyray.draw_text((str(player._damage) + ' %'), 400, constants.SCREEN_HEIGHT - 100, constants.FONT_SIZE, player_1_color)
-        pyray.draw_text((str(player2._damage) + ' %'), 1200, constants.SCREEN_HEIGHT - 100, constants.FONT_SIZE, player_2_color)
+        pyray.draw_text((str(player.get_damage()) + ' %'), 400, constants.SCREEN_HEIGHT - 100, constants.FONT_SIZE, player_1_color)
+        pyray.draw_text((str(player2.get_damage()) + ' %'), 1200, constants.SCREEN_HEIGHT - 100, constants.FONT_SIZE, player_2_color)
     #  pyray.draw_rectangle_lines(400,280,10,10,RED)
 
         pyray.end_drawing()
@@ -85,3 +95,6 @@ main()
 #COLLISION DETECTION FOR OTHER PLAYER
 #SCREEN BOUNDS - edge death detection     - not an immediate priority (DONE)
 #SEPARATE INTO CLASSES (MOSTLY DONE)
+#The check_laser_collision uses the y position of the character, not the laser
+#The shield cannot die
+#Cooldown on laser might be nice
