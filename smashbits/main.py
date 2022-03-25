@@ -12,7 +12,7 @@ player_2_color = constants.BLACK
 pyray.set_target_fps(60)  # Set our game to run at 60 frames-per-second
 
 pyray.init_window(constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT,
-                  'Super Smash Blocks - Raylib')
+                  'Super Smash Bits - Raylib')
 
 def main():
     collision = Collision()
@@ -44,6 +44,7 @@ def main():
         punching2 = game2.get_punching()
         collision.check_punch_collision(player, player2, punching)
         collision.check_punch_collision(player2, player, punching2)
+        collision.check_player_collision(player, player2)
 
         laser_active = not player.get_can_shoot()
         laser_active2 = not player2.get_can_shoot()

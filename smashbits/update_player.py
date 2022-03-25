@@ -7,16 +7,13 @@ class UpdatePlayer:
 
     def update_player(self, player, env_items, delta, keys, player_color):
 
-    
-
-
         #left (a and j)
-        if pyray.is_key_down(keys[0]):
+        if pyray.is_key_down(keys[0]) and not pyray.is_key_down(keys[3]):
             player.position.x -= constants.PLAYER_HOR_SPD * delta
             player.set_direction("left")
 
         #right (d and l)
-        if pyray.is_key_down(keys[1]):
+        if pyray.is_key_down(keys[1]) and not pyray.is_key_down(keys[3]):
             player.position.x += constants.PLAYER_HOR_SPD * delta
             player.set_direction("right")
             
@@ -28,10 +25,11 @@ class UpdatePlayer:
         #s and k (shield)
         player.set_shield(False)
         if pyray.is_key_down(keys[3]) and player.get_shield_health() > 0:
-            if player.position.y < 600:
+            if player.position.y < 590:
                 player.position.y = player.position.y + 1
             player.set_shield(True)
             pyray.draw_rectangle_lines(int(player.position.x)-25, int(player.position.y)-45,50,50,player_color)
+            constants.PLAYER_HOR_SPD = 0
             
         #q and u (ranged attack)
 
