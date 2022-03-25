@@ -12,7 +12,14 @@ class Player:
         self.end_x = 100
         self.change = 10
         self.shield = False
+        self.lives = 3
     
+    def get_lives(self):
+        return self.lives
+
+    def set_lives(self, lives):
+        self.lives = lives
+
     def get_direction(self):
         return self._direction
 

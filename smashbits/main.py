@@ -28,7 +28,7 @@ def main():
         EnvItem(pyray.Rectangle(850, 500, 300, 10), 1, constants.GRAY),
     )
 
-    while not pyray.window_should_close():  # Detect window close button or ESC key
+    while not pyray.window_should_close() and player.lives > 0 and player2.lives > 0:  # Detect window close button or ESC key
         # Update
         delta_time = pyray.get_frame_time()
 
@@ -56,8 +56,10 @@ def main():
         if pyray.is_key_pressed(pyray.KEY_R):
             player.position = pyray.Vector2(400, 280)
             player.set_damage(0)
+            player.set_lives(3)
             player2.position = pyray.Vector2(1200, 280)
             player2.set_damage(0)
+            player2.set_lives(3)
 
     # Draw
         pyray.clear_background(constants.LIGHTGRAY)
@@ -79,10 +81,12 @@ def main():
         pyray.draw_rectangle_rec(player_rect2, player_2_color)
         pyray.draw_text((str(player.get_damage()) + ' %'), 400, constants.SCREEN_HEIGHT - 100, constants.FONT_SIZE, player_1_color)
         pyray.draw_text((str(player2.get_damage()) + ' %'), 1200, constants.SCREEN_HEIGHT - 100, constants.FONT_SIZE, player_2_color)
+        pyray.draw_text((str(player.get_lives()) + ' lives'), 400, constants.SCREEN_HEIGHT - 50, constants.FONT_SIZE, player_1_color)
+        pyray.draw_text((str(player2.get_lives()) + ' lives'), 1200, constants.SCREEN_HEIGHT - 50, constants.FONT_SIZE, player_2_color)
     #  pyray.draw_rectangle_lines(400,280,10,10,RED)
 
         pyray.end_drawing()
-
+        
     # De-Initialization
     pyray.close_window()  # Close window and OpenGL context
 

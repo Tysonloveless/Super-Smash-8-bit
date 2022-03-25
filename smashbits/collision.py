@@ -57,18 +57,24 @@ class Collision:
         if player.position.x > constants.SCREEN_WIDTH:
             player.position = pyray.Vector2(400, 280)
             player._damage = 0
+            player.lives -= 1
         if player.position.x < 0:
             player.position = pyray.Vector2(400, 280)
             player._damage = 0
-        if player.position.y > constants.SCREEN_HEIGHT:
+            player.lives -= 1
+        if player.position.y > constants.SCREEN_HEIGHT+50:
             player.position = pyray.Vector2(400, 280)
             player._damage = 0
+            player.lives -= 1
         if player2.position.x > constants.SCREEN_WIDTH:
             player2.position = pyray.Vector2(1200, 280)
             player2._damage = 0
+            player2.lives -= 1
         if player2.position.x < 0:
             player2.position = pyray.Vector2(1200, 280)
             player2._damage = 0
-        if player2.position.y > constants.SCREEN_HEIGHT:
+            player2.lives -= 1
+        if player2.position.y > constants.SCREEN_HEIGHT+50:
             player2.position = pyray.Vector2(1200, 280)
             player2._damage = 0
+            player2.lives -= 1
