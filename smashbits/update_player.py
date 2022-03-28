@@ -46,6 +46,7 @@ class UpdatePlayer:
                 player.change = 10
                 player.end_x = player.center + constants.LASER_LENGTH
                 #end_x = constants.SCREEN_WIDTH
+            player.laser_y = player.position.y
             player.can_shoot = False
             
 
@@ -83,11 +84,7 @@ class UpdatePlayer:
         
 
         if (not player.can_shoot) and player.center > 0 and player.center < constants.SCREEN_WIDTH:
-            
-            if pyray.is_key_down(keys[4]):
-                global temp
-                temp = player.position.y
-            pyray.draw_line(int(player.center), int(temp) - 20, int(player.end_x), int(temp) - 20, player_color)
+            pyray.draw_line(int(player.center), int(player.laser_y) - 20, int(player.end_x), int(player.laser_y) - 20, player_color)
             player.center = player.center + player.change
             player.end_x = player.end_x + player.change
             player.end_x = player.center + constants.LASER_LENGTH
