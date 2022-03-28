@@ -13,6 +13,7 @@ class Player:
         self.change = 10
         self.shield = False
         self.lives = 3
+        self.laser_y = 0
     
     def get_lives(self):
         return self.lives

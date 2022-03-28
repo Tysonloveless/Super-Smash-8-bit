@@ -13,14 +13,6 @@ class Collision:
         player2_position = {'x': int(player2.position.x) - 20, 'y':
             int(player2.position.y) - 40, 'width':40, 'height': 40}
 
-        '''  if player_position['x'] < player2_position['x'] + player2_position['width']:
-            print('collision detected1')
-        if player_position['x'] + player_position['width'] > player2_position['x']:
-            print("collision detected2")
-        if  player2_position['y'] + player2_position['height'] > player_position['y']:
-            print("collision detected3")
-        if player_position['y'] + player_position['height'] > player2_position['y']:
-            print("collision detected4")  '''
         if player._direction == 'left':
             self.difference = -40
 
@@ -34,20 +26,17 @@ class Collision:
                         player2.add_damage(constants.PUNCH_DAMAGE)
                         player2.position.x = player2.position.x + ((self.difference / player_position['width']) * player2.get_damage() * constants.KNOCKBACK)
                     else:
-                        print('punch shield')
                         player2.shield_damage(constants.PUNCH_DAMAGE)
-                        print(player2.get_shield_health())
 
     def check_laser_collision(self, player, player2, laser_active):
 
         if laser_active:
-            if player.position.y < player2.position.y  + 20 and player.position.y > player2.position.y  - 20:
+            if player.laser_y < player2.position.y  + 20 and player.laser_y > player2.position.y  - 20:
                 if player.center < player2.position.x + 20 and player.end_x > player2.position.x - 20:
                     if not player2.get_shield():
                         player2.add_damage(constants.LASER_DAMAGE)
                         player2.position.x = player2.position.x + ((player.change / 10) * player2.get_damage() * constants.KNOCKBACK)
                     else:
-                        print('laser shield')
                         player2.shield_damage(constants.LASER_DAMAGE)
                     player.can_shoot = True
                 
@@ -58,7 +47,6 @@ class Collision:
             int(player2.position.y) - 40, 'width':40, 'height': 40}
 
         if player_position['x'] < player2_position['x'] + player2_position['width'] and player_position['x'] + player_position['width'] > player2_position['x'] and player_position['y'] < player2_position['y'] + player2_position['height'] and player_position['y'] + player_position['height'] > player2_position['y']:
-            print('collision detected')
             
             if player._direction != player2._direction:
                 constants.PLAYER_HOR_SPD = 1

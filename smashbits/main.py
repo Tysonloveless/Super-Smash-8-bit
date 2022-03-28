@@ -98,7 +98,7 @@ main()
 #ATTACKS - damage, ranged attack bug when moving/ facing right (FIXED BUG)
 #SHIELD - negate damage, timer/ limit movement
 #COLLISION DETECTION FOR OTHER PLAYER
-#SCREEN BOUNDS - edge death detection     - not an immediate priority (DONE)
+#SCREEN BOUNDS - edge death detection     - not an immediate dority (DONE)
 #SEPARATE INTO CLASSES (MOSTLY DONE)
 #The check_laser_collision uses the y position of the character, not the laser
 #The shield cannot die
