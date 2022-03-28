@@ -2,6 +2,7 @@ from player import Player
 from envitem import EnvItem
 from update_player import UpdatePlayer
 import pyray
+# from pyray import *
 import constants
 from collision import Collision
 
@@ -15,6 +16,14 @@ pyray.init_window(constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT,
                   'Super Smash Bits - Raylib')
 
 def main():
+    
+    pyray.init_audio_device()
+
+    temp1 = pyray.load_sound('smashbits\music\ssbuchiptune.wav')
+    # pyray.set_sound_volume(temp1, 1)
+    pyray.play_sound(temp1)
+    # pyray.set_sound_volume(temp1, 1)
+
     collision = Collision()
     # Main intialization
     player = Player(pyray.Vector2(400, 280), 0, False)
@@ -89,6 +98,7 @@ def main():
         pyray.end_drawing()
         
     # De-Initialization
+    pyray.close_audio_device()
     pyray.close_window()  # Close window and OpenGL context
 
 
