@@ -39,8 +39,7 @@ class Player:
         self.shield = shield
     
     def shield_damage(self, damage):
-        self.shield_health = self._shield_health - damage
-        print((self.shield_health - damage))
+        self._shield_health = self._shield_health - damage
 
     def get_damage(self):
         return self._damage
