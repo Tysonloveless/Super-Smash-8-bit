@@ -5,7 +5,7 @@ class UpdatePlayer:
         self.y = 0
         self.punching  = False
 
-    def update_player(self, player, env_items, delta, keys, player_color):
+    def update_player(self, player, env_items, delta, keys, player_color, player_identifier):
 
         #left (a and j)
         if pyray.is_key_down(keys[0]) :
