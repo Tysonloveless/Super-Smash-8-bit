@@ -40,11 +40,9 @@ class UpdatePlayer:
                 player.change = -10
                 player.end_x = player.center
                 player.center = player.center - constants.LASER_LENGTH
-                #end_x = 0
             else:
                 player.change = 10
                 player.end_x = player.center + constants.LASER_LENGTH
-                #end_x = constants.SCREEN_WIDTH
             player.laser_y = player.position.y
             player.can_shoot = False
             
@@ -95,6 +93,3 @@ class UpdatePlayer:
 
     def get_punching(self):
         return self.punching
-
-    def get_laser_y(self):
-        return 20
