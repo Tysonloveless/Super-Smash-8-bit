@@ -8,17 +8,17 @@ class UpdatePlayer:
     def update_player(self, player, env_items, delta, keys, player_color):
 
         #left (a and j)
-        if pyray.is_key_down(keys[0]) and not pyray.is_key_down(keys[3]):
+        if pyray.is_key_down(keys[0]) :
             player.position.x -= constants.PLAYER_HOR_SPD * delta
             player.set_direction("left")
 
         #right (d and l)
-        if pyray.is_key_down(keys[1]) and not pyray.is_key_down(keys[3]):
+        if pyray.is_key_down(keys[1]) :
             player.position.x += constants.PLAYER_HOR_SPD * delta
             player.set_direction("right")
             
         #jump (w and i)
-        if pyray.is_key_down(keys[2]) and player.can_jump:
+        if pyray.is_key_down(keys[2]) and player.can_jump and not pyray.is_key_down(keys[3]):
             player.speed = -constants.PLAYER_JUMP_SPD
             player.can_jump = False
         
@@ -29,13 +29,12 @@ class UpdatePlayer:
                 player.position.y = player.position.y + 1
             player.set_shield(True)
             pyray.draw_rectangle_lines(int(player.position.x)-25, int(player.position.y)-45,50,50,player_color)
-            constants.PLAYER_HOR_SPD = 0
             
         #q and u (ranged attack)
 
         #currently trying to have the laser fly out instead of always being centered on the player
         #if a bolt is flying, hopefully the player can't spawn another laser
-        if pyray.is_key_down(keys[4]) and player.can_shoot:
+        if pyray.is_key_down(keys[4]) and player.can_shoot and not pyray.is_key_down(keys[3]) :
             player.center = player.position.x
             if player.get_direction() == "left":
                 player.change = -10
@@ -52,7 +51,7 @@ class UpdatePlayer:
 
         #e and o (punch attack)
         self.punching = False
-        if pyray.is_key_down(keys[5]) and player.get_shield_health() > 0:
+        if pyray.is_key_down(keys[5]) and not pyray.is_key_down(keys[3]):
             if player.get_direction() == "left":
                 start_x = int(player.position.x) - 40
             else:

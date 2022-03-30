@@ -41,21 +41,35 @@ class Collision:
                     player.can_shoot = True
                 
     def check_player_collision(self, player, player2):
+        
+        change = 1
+
         player_position = {'x': int(player.position.x) - 20, 'y':
             int(player.position.y) - 40, 'width': 40, 'height': 40}
         player2_position = {'x': int(player2.position.x) - 20, 'y':
             int(player2.position.y) - 40, 'width':40, 'height': 40}
+        
+        if player._direction == 'left':
+            self.difference = -4
 
-        if player_position['x'] < player2_position['x'] + player2_position['width'] and player_position['x'] + player_position['width'] > player2_position['x'] and player_position['y'] < player2_position['y'] + player2_position['height'] and player_position['y'] + player_position['height'] > player2_position['y']:
+        if player._direction == 'right':
+            self.difference = 4
+        
+        if player.position.x < player2.position.x:
+            change = -1
             
-            if player._direction != player2._direction:
-                constants.PLAYER_HOR_SPD = 1
-            elif player._direction == player2._direction:
-                constants.PLAYER_HOR_SPD = 1
-            else:
-                constants.PLAYER_HOR_SPD = 200                
-        else:
-            constants.PLAYER_HOR_SPD = 200
+        x = player_position['width']
+        if player_position['x'] < player2_position['x'] + player2_position['width'] and player_position['x'] + player_position['width'] > player2_position['x']:
+            if player_position['y'] < player2_position['y'] + player2_position['height'] and player_position['y'] + player_position['height'] > player2_position['y']:
+            
+                if player._direction != player2._direction:
+                    player.position.x = player.position.x - self.difference
+                    player2.position.x = player2.position.x + self.difference
+
+                elif player._direction == player2._direction:
+                    player.position.x = player2.position.x + player_position['width'] * change
+                    player2.position.x = player.position.x - (player2_position['width'] + 1 ) * change
+                    
 
     def check_bounds(self, player, player2):
         if player.position.x > constants.SCREEN_WIDTH:
