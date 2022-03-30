@@ -47,8 +47,8 @@ def main():
 
         game = UpdatePlayer(player)
         game2 = UpdatePlayer(player2)
-        game.update_player(player, env_items, delta_time, keys_1, player_1_color)
-        game2.update_player(player2, env_items, delta_time, keys_2, player_2_color)
+        game.update_player(player, env_items, delta_time, keys_1, player_1_color, 1)
+        game2.update_player(player2, env_items, delta_time, keys_2, player_2_color, 2)
         punching = game.get_punching()
         punching2 = game2.get_punching()
         collision.check_punch_collision(player, player2, punching)

@@ -5,17 +5,33 @@ class UpdatePlayer:
         self.y = 0
         self.punching  = False
 
-    def update_player(self, player, env_items, delta, keys, player_color):
+    def update_player(self, player, env_items, delta, keys, player_color, player_identifier):
 
-        #left (a and j)
-        if pyray.is_key_down(keys[0]) and not pyray.is_key_down(keys[3]):
-            player.position.x -= constants.PLAYER_HOR_SPD * delta
-            player.set_direction("left")
+        if player_identifier == 1:
+            #left (a and j)
+            if pyray.is_key_down(keys[0]) and not pyray.is_key_down(keys[3]):
+                player.position.x -= constants.PLAYER_HOR_SPD * delta
+                player.set_direction("left")
 
-        #right (d and l)
-        if pyray.is_key_down(keys[1]) and not pyray.is_key_down(keys[3]):
-            player.position.x += constants.PLAYER_HOR_SPD * delta
-            player.set_direction("right")
+            #right (d and l)
+            if pyray.is_key_down(keys[1]) and not pyray.is_key_down(keys[3]):
+                player.position.x += constants.PLAYER_HOR_SPD * delta
+                player.set_direction("right")
+            
+            constants.PLAYER2_HOR_SPD = 200
+
+        if player_identifier == 2:
+            #left (a and j)
+            if pyray.is_key_down(keys[0]) and not pyray.is_key_down(keys[3]):
+                player.position.x -= constants.PLAYER2_HOR_SPD * delta
+                player.set_direction("left")
+
+            #right (d and l)
+            if pyray.is_key_down(keys[1]) and not pyray.is_key_down(keys[3]):
+                player.position.x += constants.PLAYER2_HOR_SPD * delta
+                player.set_direction("right")
+
+            constants.PLAYER_HOR_SPD = 200
             
         #jump (w and i)
         if pyray.is_key_down(keys[2]) and player.can_jump:
