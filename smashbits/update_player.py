@@ -24,12 +24,13 @@ class UpdatePlayer:
         
         #s and k (shield)
         player.set_shield(False)
-        if pyray.is_key_down(keys[3]) and player.get_shield_health() > 0:
+        if pyray.is_key_down(keys[3]):
             if player.position.y < 590:
                 player.position.y = player.position.y + 1
-            player.set_shield(True)
-            pyray.draw_rectangle_lines(int(player.position.x)-25, int(player.position.y)-45,50,50,player_color)
-            
+            if player.get_shield_health() > 0:
+                player.set_shield(True)
+                pyray.draw_rectangle_lines(int(player.position.x)-25, int(player.position.y)-45,50,50,player_color)
+                
         #q and u (ranged attack)
 
         #currently trying to have the laser fly out instead of always being centered on the player
