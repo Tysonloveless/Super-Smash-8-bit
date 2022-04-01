@@ -100,9 +100,11 @@ def main():
             player.position = pyray.Vector2(400, 280)
             player.set_damage(0)
             player.set_lives(3)
+            player.set_shield_health(100)
             player2.position = pyray.Vector2(1200, 280)
             player2.set_damage(0)
             player2.set_lives(3)
+            player2.set_shield_health(100)
 
     # Draw
         #sets the background color
