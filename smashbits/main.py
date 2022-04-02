@@ -19,11 +19,8 @@ pyray.init_window(constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT,
 
 
 def main():
-    """Runs the main game functions
-    
-    The responsibility of Actor is to keep track of its appearance, position and velocity in 2d 
-    space.
-
+    """
+    Purpose: Runs the main game functions
     Attributes:
         none
     """
@@ -69,8 +66,8 @@ def main():
         game2 = UpdatePlayer(player2)
 
         #update the players using their location, keys being pressed, etc
-        game.update_player(player, env_items, delta_time, keys_1, player_1_color, 1)
-        game2.update_player(player2, env_items, delta_time, keys_2, player_2_color, 2)
+        game.update_player(player, env_items, delta_time, keys_1, player_1_color)
+        game2.update_player(player2, env_items, delta_time, keys_2, player_2_color)
 
         #check to see if player is punching
         punching = game.get_punching()
