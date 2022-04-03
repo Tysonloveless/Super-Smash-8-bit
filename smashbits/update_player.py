@@ -23,7 +23,7 @@ class UpdatePlayer:
         Parameters:
             self - an instance of the attributes of the player class
             player - str containing the player class for player 1 or for player 2
-            env items - the enviroment items (the platforms)
+            env items - list of the enviroment items (the platforms)
             delta - the frame time of the game (time)
             keys - a list of the keys that the player can press
             player color - the color of the player

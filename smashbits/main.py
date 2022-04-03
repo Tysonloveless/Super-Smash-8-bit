@@ -29,7 +29,7 @@ def main():
     pyray.init_audio_device()
 
     #saves the music file into the variable temp1
-    temp1 = pyray.load_sound('test.wav')
+    temp1 = pyray.load_sound('smashbits/music/test.wav')
     
     #plays the music file temp1
     pyray.play_sound(temp1)
